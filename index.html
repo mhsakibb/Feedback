@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Feedback is an employee management dashboard for exploring employee profiles, tracking tasks, and monitoring team progress.">
+
+    <meta name="theme-color" content="#083D91">
+
+    <title>Feedback | Employee Management Dashboard</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/common.css">
+
+    <!-- Home page CSS -->
+    <link rel="stylesheet" href="css/index.css">
+
+    <!-- Home page JavaScript -->
+    <script type="module" src="js/index.js"></script>
+</head>
+
+<body>
+
+    <!-- Skip link for keyboard and screen-reader users -->
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header" id="site-header">
+
+        <div class="container header-container">
+
+            <!-- Company logo and website name -->
+            <a class="brand" href="index.html" aria-label="Feedback home">
+
+                <img class="brand-logo" src="images/company-logo.png" alt="" width="44" height="44">
+
+                <span class="brand-name">Feedback</span>
+
+            </a>
+
+            <!-- Main navigation -->
+            <nav class="primary-navigation" aria-label="Main navigation">
+
+                <ul class="navigation-list">
+
+                    <li>
+                        <a href="index.html" aria-current="page">
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="pages/all-employees.html">
+                            All Employees
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="pages/tasks.html#assign-task">
+                            Assign Task
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="pages/analytics.html">
+                            Analytics
+                        </a>
+                    </li>
+
+                    <li>
+                        <details class="nav-dropdown">
+
+                            <summary>About</summary>
+
+                            <ul class="dropdown-list">
+
+                                <li>
+                                    <a href="pages/about.html#at-a-glance">
+                                        At a Glance
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="pages/about.html#mission-vision">
+                                        Mission &amp; Vision
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="pages/about.html#history">
+                                        Company History
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="pages/about.html#policies">
+                                        Policies &amp; Regulations
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </details>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <!-- Employee and department search -->
+            <div class="header-tools">
+
+                <form class="employee-search" id="employee-search-form" role="search" action="index.html" method="get">
+
+                    <label class="visually-hidden" for="employee-search">
+                        Search employees by name, ID, or department
+                    </label>
+
+                    <input type="search" id="employee-search" name="q" placeholder="Search employees or departments..."
+                        autocomplete="off" aria-controls="employee-search-results">
+
+                    <button type="submit" class="button button-primary">
+                        Search
+                    </button>
+
+                    <!-- Search results will be rendered by JavaScript -->
+                    <div class="search-results" id="employee-search-results" aria-live="polite" hidden></div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main id="main-content">
+
+        <!-- Dashboard introduction -->
+        <section class="hero-section" id="dashboard-overview" aria-labelledby="hero-title">
+
+            <div class="container hero-container">
+
+                <h1 id="hero-title">
+                    People. Progress. Performance.
+                </h1>
+
+                <p class="hero-description">
+                    Manage employee profiles, organize assigned tasks,
+                    and understand your team's progress from one place.
+                </p>
+
+                <div class="hero-actions">
+
+                    <a class="button button-primary" href="pages/all-employees.html">
+                        Explore Employees
+                    </a>
+
+                    <a class="button button-secondary" href="pages/tasks.html#assign-task">
+                        Assign a Task
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Dashboard summary -->
+        <section class="dashboard-overview section" aria-labelledby="overview-title">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <h2 id="overview-title">
+                        Company Overview
+                    </h2>
+
+                    <p>
+                        Get a quick overview of your employees and work.
+                    </p>
+
+                </div>
+
+                <div class="metrics-grid">
+
+                    <article class="metric-card">
+
+                        <h3>Total Employees</h3>
+
+                        <p class="metric-value">
+                            <span id="total-employees">—</span>
+                        </p>
+
+                        <p class="metric-description">
+                            Employees registered in the demo data
+                        </p>
+
+                    </article>
+
+
+                    <article class="metric-card">
+
+                        <h3>Departments</h3>
+
+                        <p class="metric-value">
+                            <span id="total-departments">—</span>
+                        </p>
+
+                        <p class="metric-description">
+                            Departments represented in the demo data
+                        </p>
+
+                    </article>
+
+
+                    <article class="metric-card">
+
+                        <h3>Active Tasks</h3>
+
+                        <p class="metric-value">
+                            <span id="active-tasks">—</span>
+                        </p>
+
+                        <p class="metric-description">
+                            Tasks currently in progress
+                        </p>
+
+                    </article>
+
+
+                    <article class="metric-card">
+
+                        <h3>Overdue Tasks</h3>
+
+                        <p class="metric-value">
+                            <span id="overdue-tasks">—</span>
+                        </p>
+
+                        <p class="metric-description">
+                            Incomplete tasks past their deadlines
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Employee portfolio section -->
+        <section class="employee-section section" id="employees" aria-labelledby="employees-title">
+
+            <div class="container">
+
+                <div class="section-heading employee-section-heading">
+
+                    <div>
+
+                        <h2 id="employees-title">
+                            Meet Our Team
+                        </h2>
+
+                        <p id="employee-grid-help">
+                            Explore employee profiles and their
+                            professional information.
+                        </p>
+
+                    </div>
+
+                    <a class="text-link" href="pages/all-employees.html">
+                        View All Employees &rarr;
+                    </a>
+
+                </div>
+
+
+                <!-- Employee cards will be rendered by JavaScript -->
+                <div class="employee-grid" id="employee-grid" aria-describedby="employee-grid-help" aria-live="polite">
+
+                    <p class="empty-state" id="employee-empty-state">
+                        Employee profiles will appear here when
+                        the demo data is loaded.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Display a helpful message if JavaScript is disabled -->
+        <noscript>
+
+            <div class="container">
+
+                <p class="notice">
+                    JavaScript is required to display employee profiles
+                    and interactive dashboard information.
+                    Please enable JavaScript in your browser.
+                </p>
+
+            </div>
+
+        </noscript>
+
+    </main>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer" id="site-footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <!-- Platform introduction -->
+                <section class="footer-brand" aria-labelledby="footer-brand-title">
+
+                    <h2 id="footer-brand-title">
+                        Feedback
+                    </h2>
+
+                    <p>
+                        A centralized workspace for employee profiles,
+                        task updates, and team performance.
+                    </p>
+
+                    <blockquote>
+                        Clear goals. Visible progress. Better teamwork.
+                    </blockquote>
+
+                </section>
+
+
+                <!-- Useful navigation -->
+                <nav class="footer-navigation" aria-label="Footer navigation">
+
+                    <h2>Quick Links</h2>
+
+                    <ul>
+
+                        <li>
+                            <a href="index.html">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="pages/all-employees.html">
+                                All Employees
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="pages/tasks.html">
+                                Task Management
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="pages/analytics.html">
+                                Analytics
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="pages/about.html">
+                                About Company
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+
+                <!-- Company information and external website -->
+                <section class="footer-contact" aria-labelledby="footer-contact-title">
+
+                    <h2 id="footer-contact-title">
+                        Company Information
+                    </h2>
+
+                    <p>
+                        Visit the company's official website for
+                        company information and services.
+                    </p>
+
+                    <a href="https://bssoln.com/" target="_blank" rel="noopener noreferrer">
+                        Visit BSSOLN &rarr;
+                    </a>
+
+                    <p class="contact-note">
+                        Official contact details will be added
+                        after verification.
+                    </p>
+
+                </section>
+
+            </div>
+
+
+            <!-- Copyright information -->
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; <span id="copyright-year">2026</span>
+                    Feedback. All rights reserved.
+                </p>
+
+                <a href="#site-header">
+                    Back to Top &uarr;
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

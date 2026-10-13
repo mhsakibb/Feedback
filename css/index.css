@@ -1,0 +1,380 @@
+/* ==================================================
+   Feedback - Home Page Styles
+   File: css/index.css
+   Purpose: Hero, dashboard metrics and employee cards
+   ================================================== */
+
+
+/* 1. HERO SECTION */
+
+.hero-section {
+    background-color: var(--color-white);
+    border-bottom: var(--border-default);
+}
+
+.hero-container {
+    padding-block: var(--space-16);
+}
+
+.eyebrow {
+    margin-bottom: var(--space-4);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+    line-height: var(--line-height-tight);
+}
+
+.hero-container h1 {
+    max-width: 850px;
+    margin-bottom: var(--space-5);
+
+    color: var(--color-primary);
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.04em;
+}
+
+.hero-description {
+    max-width: 680px;
+    margin-bottom: var(--space-8);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+
+/* 2. DASHBOARD OVERVIEW */
+
+.dashboard-overview {
+    background-color: var(--color-primary-light);
+}
+
+.dashboard-overview .section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+}
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+}
+
+
+/* Individual metric card */
+
+.metric-card {
+    min-width: 0;
+    padding: var(--space-6);
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.metric-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.metric-card h3 {
+    margin-bottom: var(--space-4);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+}
+
+.metric-value {
+    margin-bottom: var(--space-3);
+
+    color: var(--color-primary);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    overflow-wrap: anywhere;
+}
+
+.metric-description {
+    margin-bottom: 0;
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-normal);
+}
+
+
+/* 3. EMPLOYEE DIRECTORY SECTION */
+
+.employee-section {
+    background-color: var(--color-white);
+}
+
+.employee-section-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+}
+
+.employee-section-heading > div {
+    min-width: 0;
+}
+
+.employee-section-heading .text-link {
+    flex-shrink: 0;
+    margin-bottom: var(--space-1);
+}
+
+
+/* 4. EMPLOYEE CARD GRID */
+
+.employee-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-6);
+    align-items: stretch;
+}
+
+
+/* 5. INDIVIDUAL EMPLOYEE CARD */
+
+/*
+   The JavaScript-generated card will use this structure:
+
+   article.employee-card
+       img.employee-card-image
+       div.employee-card-content
+           h3.employee-card-name
+           p.employee-card-designation
+           p.employee-card-department
+           div.employee-card-actions
+               a.button.button-primary
+*/
+
+
+.employee-card {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    height: 100%;
+    overflow: hidden;
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        transform var(--transition-normal),
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.employee-card:hover {
+    transform: translateY(-3px);
+
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+
+/* Employee photo */
+
+.employee-card-image {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 4 / 3;
+
+    object-fit: cover;
+    object-position: center;
+
+    background-color: var(--color-primary-light);
+
+    border-bottom: var(--border-default);
+}
+
+
+/* Employee information */
+
+.employee-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+
+    min-width: 0;
+    padding: var(--space-5);
+}
+
+.employee-card-name {
+    margin-bottom: var(--space-2);
+
+    color: var(--color-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+
+    overflow-wrap: anywhere;
+}
+
+.employee-card-designation {
+    margin-bottom: var(--space-2);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+}
+
+.employee-card-department {
+    margin-bottom: var(--space-5);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+
+    overflow-wrap: anywhere;
+}
+
+
+/* Card action */
+
+.employee-card-actions {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: auto;
+    padding-top: var(--space-2);
+}
+
+.employee-card-actions .button {
+    width: 100%;
+}
+
+
+/* 6. LOADING, EMPTY AND ERROR STATES */
+
+.employee-grid .empty-state {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+
+
+/* 7. RESPONSIVE LAYOUT */
+
+
+/* Laptop and smaller desktop screens */
+
+@media (max-width: 1050px) {
+
+    .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .employee-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+}
+
+
+/* Tablets */
+
+@media (max-width: 768px) {
+
+    .hero-container {
+        padding-block: var(--space-12);
+    }
+
+    .hero-container h1 {
+        letter-spacing: -0.025em;
+    }
+
+    .hero-description {
+        font-size: var(--font-size-base);
+    }
+
+    .employee-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-4);
+    }
+
+    .metric-card {
+        padding: var(--space-5);
+    }
+
+    .employee-card-content {
+        padding: var(--space-4);
+    }
+
+}
+
+
+/* Mobile phones */
+
+@media (max-width: 480px) {
+
+    .hero-container {
+        padding-block: var(--space-10);
+    }
+
+    .hero-container h1 {
+        font-size: var(--font-size-2xl);
+    }
+
+    .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .hero-actions .button {
+        width: 100%;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+    }
+
+    .employee-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-5);
+    }
+
+    .employee-card-image {
+        aspect-ratio: 4 / 3;
+    }
+
+    .employee-section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+}

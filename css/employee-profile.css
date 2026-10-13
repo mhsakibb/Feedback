@@ -1,0 +1,756 @@
+/* ==================================================
+   Feedback - Employee Profile Styles
+   File: css/employee-profile.css
+
+   Responsibilities:
+   1. Profile breadcrumb
+   2. Employee overview and portrait
+   3. Professional information cards
+   4. Task summary metrics
+   5. Assigned task table
+   6. Work updates and feedback
+   7. Responsive layouts
+   ================================================== */
+
+
+/* 1. RESPECT HTML HIDDEN ATTRIBUTE */
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* 2. PROFILE BREADCRUMB */
+
+.profile-breadcrumb-section {
+    padding-block: var(--space-4);
+
+    background-color: var(--color-white);
+    border-bottom: var(--border-default);
+}
+
+.profile-breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+    font-size: var(--font-size-sm);
+}
+
+.profile-breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+
+    color: var(--color-neutral);
+}
+
+.profile-breadcrumb li + li::before {
+    content: "/";
+
+    color: var(--color-neutral);
+}
+
+.profile-breadcrumb a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.profile-breadcrumb a:hover {
+    text-decoration-thickness: 2px;
+}
+
+.profile-breadcrumb [aria-current="page"] {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+}
+
+
+/* 3. PROFILE LOADING AND NOT-FOUND STATES */
+
+.profile-loading p {
+    margin-bottom: 0;
+    color: var(--color-neutral);
+}
+
+.profile-not-found {
+    text-align: center;
+}
+
+.profile-not-found h1 {
+    margin-bottom: var(--space-4);
+    font-size: var(--font-size-2xl);
+}
+
+.profile-not-found p {
+    max-width: 600px;
+    margin: 0 auto var(--space-6);
+    color: var(--color-neutral);
+    line-height: var(--line-height-relaxed);
+}
+
+
+/* 4. PROFILE OVERVIEW SECTION */
+
+.profile-overview {
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-10);
+
+    background-color: var(--color-primary-light);
+    border-bottom: var(--border-default);
+}
+
+.profile-overview-card {
+    display: grid;
+
+    grid-template-columns: 220px minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-10);
+
+    padding: var(--space-8);
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-xl);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* 5. EMPLOYEE PORTRAIT */
+
+.profile-photo-container {
+    width: 220px;
+    max-width: 100%;
+
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+
+    background-color: var(--color-primary-light);
+
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+}
+
+.profile-photo {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+
+/* 6. EMPLOYEE IDENTITY */
+
+.profile-identity {
+    min-width: 0;
+}
+
+.profile-identity .eyebrow {
+    margin-bottom: var(--space-3);
+}
+
+.profile-identity h1 {
+    margin-bottom: var(--space-3);
+
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.03em;
+
+    overflow-wrap: anywhere;
+}
+
+.profile-designation {
+    margin-bottom: var(--space-2);
+
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+
+    color: var(--color-primary);
+}
+
+.profile-department {
+    margin-bottom: var(--space-3);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-base);
+}
+
+.profile-employee-id {
+    margin-bottom: var(--space-4);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+
+/* 7. PROFILE STATUS BADGE */
+
+.profile-identity .status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--space-1) var(--space-3);
+
+    background-color: var(--color-primary-light);
+    border: var(--border-width) solid var(--color-primary-border);
+    border-radius: var(--radius-full);
+
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.profile-identity .status-badge.status-inactive {
+    background-color: var(--color-white);
+    border-color: var(--color-neutral);
+    color: var(--color-neutral);
+}
+
+
+/* 8. PROFILE ACTIONS */
+
+.profile-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    margin-top: var(--space-6);
+}
+
+.profile-actions .button {
+    min-width: 140px;
+}
+
+
+/* 9. PROFILE INFORMATION GRID */
+
+.profile-details-section {
+    background-color: var(--color-white);
+}
+
+.profile-details-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+
+    gap: var(--space-5);
+}
+
+
+/* 10. INFORMATION CARDS */
+
+.profile-detail-card {
+    min-width: 0;
+    padding: var(--space-6);
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.profile-detail-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.profile-detail-card h3 {
+    margin-bottom: var(--space-5);
+
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+}
+
+.profile-detail-card h4 {
+    margin-top: var(--space-6);
+    margin-bottom: var(--space-3);
+
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+}
+
+.profile-detail-card > p {
+    color: var(--color-neutral);
+    line-height: var(--line-height-relaxed);
+    overflow-wrap: anywhere;
+}
+
+
+/* 11. DEFINITION LIST */
+
+.profile-information-list {
+    margin: 0;
+}
+
+.profile-information-item {
+    display: grid;
+
+    grid-template-columns: minmax(120px, 0.8fr) minmax(0, 1.2fr);
+    gap: var(--space-4);
+
+    padding-block: var(--space-3);
+
+    border-bottom: var(--border-default);
+}
+
+.profile-information-item:first-child {
+    padding-top: 0;
+}
+
+.profile-information-item:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.profile-information-item dt {
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.profile-information-item dd {
+    min-width: 0;
+    margin: 0;
+
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+
+    overflow-wrap: anywhere;
+}
+
+#profile-email {
+    word-break: break-word;
+}
+
+
+/* 12. PROFESSIONAL SKILLS */
+
+.profile-skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+}
+
+.profile-skills-list li {
+    max-width: 100%;
+    padding: var(--space-2) var(--space-3);
+
+    background-color: var(--color-primary-light);
+
+    border: var(--border-default);
+    border-radius: var(--radius-md);
+
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+
+    overflow-wrap: anywhere;
+}
+
+
+/* 13. TASK OVERVIEW METRICS */
+
+.profile-performance-section {
+    background-color: var(--color-primary-light);
+    border-top: var(--border-default);
+    border-bottom: var(--border-default);
+}
+
+.profile-task-metrics {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+}
+
+.profile-task-metric {
+    min-width: 0;
+    padding: var(--space-6);
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.profile-task-metric:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.profile-task-metric h3 {
+    margin-bottom: var(--space-4);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+}
+
+.profile-task-metric-value {
+    margin-bottom: 0;
+
+    color: var(--color-primary);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+}
+
+
+/* 14. ASSIGNED TASK TABLE */
+
+.profile-assigned-tasks {
+    background-color: var(--color-white);
+}
+
+.profile-task-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neutral) var(--color-white);
+}
+
+.profile-task-table {
+    width: 100%;
+    min-width: 700px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    text-align: left;
+}
+
+.profile-task-table thead {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.profile-task-table th {
+    padding: var(--space-4);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+
+    white-space: nowrap;
+}
+
+.profile-task-table td {
+    padding: var(--space-4);
+    vertical-align: middle;
+
+    border-bottom: var(--border-default);
+    line-height: var(--line-height-normal);
+}
+
+.profile-task-table tbody tr {
+    background-color: var(--color-white);
+
+    transition: background-color var(--transition-fast);
+}
+
+.profile-task-table tbody tr:hover {
+    background-color: var(--color-primary-light);
+}
+
+.profile-task-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* Task title and description */
+
+.profile-task-title {
+    display: block;
+    margin-bottom: var(--space-1);
+
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+    overflow-wrap: anywhere;
+}
+
+.profile-task-description {
+    display: block;
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-normal);
+    overflow-wrap: anywhere;
+}
+
+
+/* Task priority and status */
+
+.profile-task-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: var(--space-1) var(--space-2);
+
+    background-color: var(--color-primary-light);
+    border: var(--border-width) solid var(--color-primary-border);
+    border-radius: var(--radius-full);
+
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+
+    white-space: nowrap;
+}
+
+.profile-task-badge.is-neutral {
+    background-color: var(--color-white);
+    border-color: var(--color-neutral);
+    color: var(--color-neutral);
+}
+
+
+/* Task progress */
+
+.profile-task-progress {
+    min-width: 90px;
+}
+
+.profile-task-progress-value {
+    display: block;
+    margin-bottom: var(--space-2);
+
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.profile-task-progress-track {
+    width: 100%;
+    height: 7px;
+
+    overflow: hidden;
+
+    background-color: var(--color-primary-light);
+    border: var(--border-width) solid var(--color-primary-border);
+    border-radius: var(--radius-full);
+}
+
+.profile-task-progress-fill {
+    display: block;
+    height: 100%;
+
+    background-color: var(--color-primary);
+    border-radius: var(--radius-full);
+
+    transition: width var(--transition-normal);
+}
+
+
+/* Empty task table */
+
+.profile-task-table .empty-row td {
+    padding: var(--space-8) var(--space-5);
+
+    color: var(--color-neutral);
+    text-align: center;
+    line-height: var(--line-height-relaxed);
+}
+
+
+/* 15. WORK UPDATES AND FEEDBACK */
+
+.profile-activity-section {
+    background-color: var(--color-primary-light);
+}
+
+.profile-activity-list {
+    display: grid;
+    gap: var(--space-4);
+}
+
+.profile-activity-card {
+    padding: var(--space-5);
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.profile-activity-card h3 {
+    margin-bottom: var(--space-2);
+
+    color: var(--color-primary);
+    font-size: var(--font-size-base);
+}
+
+.profile-activity-card p {
+    margin-bottom: var(--space-2);
+
+    color: var(--color-neutral);
+    line-height: var(--line-height-relaxed);
+    overflow-wrap: anywhere;
+}
+
+.profile-activity-card p:last-child {
+    margin-bottom: 0;
+}
+
+.profile-activity-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-xs);
+}
+
+.profile-activity-list .empty-state {
+    margin-bottom: 0;
+}
+
+
+/* 16. RESPONSIVE LAYOUT */
+
+
+/* Tablets and smaller desktop screens */
+
+@media (max-width: 900px) {
+
+    .profile-overview-card {
+        grid-template-columns: 170px minmax(0, 1fr);
+        gap: var(--space-6);
+
+        padding: var(--space-6);
+    }
+
+    .profile-photo-container {
+        width: 170px;
+    }
+
+    .profile-task-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* Small tablets and mobile landscape */
+
+@media (max-width: 650px) {
+
+    .profile-overview {
+        padding-block: var(--space-8);
+    }
+
+    .profile-overview-card {
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: start;
+        gap: var(--space-5);
+
+        padding: var(--space-5);
+    }
+
+    .profile-photo-container {
+        width: 150px;
+    }
+
+    .profile-identity h1 {
+        font-size: var(--font-size-2xl);
+    }
+
+    .profile-actions {
+        align-items: stretch;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .profile-actions .button {
+        width: 100%;
+    }
+
+    .profile-details-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .profile-detail-card {
+        padding: var(--space-5);
+    }
+
+    .profile-information-item {
+        grid-template-columns: minmax(100px, 0.8fr) minmax(0, 1.2fr);
+        gap: var(--space-3);
+    }
+
+}
+
+
+/* Small mobile devices */
+
+@media (max-width: 420px) {
+
+    .profile-task-metrics {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .profile-task-metric {
+        padding: var(--space-5);
+    }
+
+    .profile-breadcrumb {
+        font-size: var(--font-size-xs);
+    }
+
+    .profile-information-item {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-1);
+    }
+
+    .profile-detail-card {
+        padding: var(--space-4);
+    }
+
+}

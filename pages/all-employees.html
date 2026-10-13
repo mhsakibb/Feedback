@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Browse, search, and manage employee profiles across company departments using the Feedback employee directory."
+    >
+
+    <meta name="theme-color" content="#083D91">
+
+    <title>All Employees | Feedback</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/common.css">
+
+    <!-- Directory-specific styles -->
+    <link rel="stylesheet" href="../css/all-employees.css">
+
+    <!-- Directory functionality -->
+    <script type="module" src="../js/employees.js"></script>
+</head>
+
+<body>
+
+    <!-- Skip link -->
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header" id="site-header">
+
+        <div class="container header-container">
+
+            <a
+                class="brand"
+                href="../index.html"
+                aria-label="Feedback home"
+            >
+                <img
+                    class="brand-logo"
+                    src="../images/company-logo.png"
+                    alt=""
+                    width="44"
+                    height="44"
+                >
+
+                <span class="brand-name">Feedback</span>
+            </a>
+
+
+            <!-- Main navigation -->
+            <nav
+                class="primary-navigation"
+                aria-label="Main navigation"
+            >
+                <ul class="navigation-list">
+
+                    <li>
+                        <a href="../index.html">
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="all-employees.html"
+                            aria-current="page"
+                        >
+                            All Employees
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="tasks.html#assign-task">
+                            Assign Task
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="analytics.html">
+                            Analytics
+                        </a>
+                    </li>
+
+                    <li>
+                        <details class="nav-dropdown">
+
+                            <summary>About</summary>
+
+                            <ul class="dropdown-list">
+
+                                <li>
+                                    <a href="about.html#at-a-glance">
+                                        At a Glance
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="about.html#mission-vision">
+                                        Mission &amp; Vision
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="about.html#history">
+                                        Company History
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="about.html#policies">
+                                        Policies &amp; Regulations
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </details>
+                    </li>
+
+                </ul>
+            </nav>
+
+
+            <!-- Shared employee search -->
+            <div class="header-tools">
+
+                <form
+                    class="employee-search"
+                    id="employee-search-form"
+                    role="search"
+                    action="all-employees.html"
+                    method="get"
+                >
+
+                    <label
+                        class="visually-hidden"
+                        for="employee-search"
+                    >
+                        Search employees by name, ID, or department
+                    </label>
+
+                    <input
+                        type="search"
+                        id="employee-search"
+                        name="q"
+                        placeholder="Search employees or departments..."
+                        autocomplete="off"
+                        aria-controls="employee-search-results"
+                    >
+
+                    <button
+                        type="submit"
+                        class="button button-primary"
+                    >
+                        Search
+                    </button>
+
+                    <div
+                        class="search-results"
+                        id="employee-search-results"
+                        aria-live="polite"
+                        hidden
+                    ></div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main id="main-content">
+
+        <!-- Page introduction -->
+        <section
+            class="directory-hero"
+            aria-labelledby="directory-title"
+        >
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    PEOPLE DIRECTORY
+                </p>
+
+                <h1 id="directory-title">
+                    All Employees
+                </h1>
+
+                <p class="directory-description">
+                    Explore employee profiles, identify departments,
+                    and find the right people across the organization.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Employee directory -->
+        <section
+            class="employee-directory section"
+            aria-labelledby="directory-list-title"
+        >
+
+            <div class="container">
+
+                <!-- Directory heading -->
+                <div class="directory-heading">
+
+                    <div>
+                        <h2 id="directory-list-title">
+                            Employee Directory
+                        </h2>
+
+                        <p id="directory-description">
+                            Search and filter the employee records
+                            available in this demo.
+                        </p>
+                    </div>
+
+                    <!-- Reserved for an authorized admin action -->
+                    <a
+                        class="button button-primary"
+                        href="tasks.html#assign-task"
+                    >
+                        Assign Task
+                    </a>
+
+                </div>
+
+
+                <!-- Filters and controls -->
+                <form
+                    class="directory-filters"
+                    id="directory-filter-form"
+                >
+
+                    <div class="filter-field">
+
+                        <label for="directory-search">
+                            Search directory
+                        </label>
+
+                        <input
+                            type="search"
+                            id="directory-search"
+                            name="search"
+                            placeholder="Name, ID, or designation"
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <div class="filter-field">
+
+                        <label for="department-filter">
+                            Department
+                        </label>
+
+                        <select
+                            id="department-filter"
+                            name="department"
+                        >
+                            <option value="">
+                                All Departments
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-field">
+
+                        <label for="status-filter">
+                            Employee status
+                        </label>
+
+                        <select
+                            id="status-filter"
+                            name="status"
+                        >
+                            <option value="">
+                                All Statuses
+                            </option>
+
+                            <option value="Active">
+                                Active
+                            </option>
+
+                            <option value="Inactive">
+                                Inactive
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-field">
+
+                        <label for="sort-filter">
+                            Sort by
+                        </label>
+
+                        <select
+                            id="sort-filter"
+                            name="sort"
+                        >
+                            <option value="name-asc">
+                                Name: A to Z
+                            </option>
+
+                            <option value="name-desc">
+                                Name: Z to A
+                            </option>
+
+                            <option value="department-asc">
+                                Department
+                            </option>
+
+                            <option value="joining-newest">
+                                Newest Joining Date
+                            </option>
+
+                            <option value="joining-oldest">
+                                Oldest Joining Date
+                            </option>
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-actions">
+
+                        <button
+                            type="submit"
+                            class="button button-primary"
+                        >
+                            Apply Filters
+                        </button>
+
+                        <button
+                            type="reset"
+                            class="button button-secondary"
+                            id="clear-directory-filters"
+                        >
+                            Clear
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <!-- Employee count and results information -->
+                <div class="directory-toolbar">
+
+                    <p
+                        id="directory-result-count"
+                        aria-live="polite"
+                    >
+                        Loading employee records...
+                    </p>
+
+                </div>
+
+
+                <!-- Accessible table wrapper -->
+                <div
+                    class="employee-table-wrapper"
+                    role="region"
+                    aria-label="Employee directory table"
+                    tabindex="0"
+                >
+
+                    <table class="employee-table">
+
+                        <caption class="visually-hidden">
+                            Employee directory containing employee IDs,
+                            names, designations, departments, statuses,
+                            joining dates, and profile links.
+                        </caption>
+
+                        <thead>
+                            <tr>
+
+                                <th scope="col">
+                                    Employee ID
+                                </th>
+
+                                <th scope="col">
+                                    Employee
+                                </th>
+
+                                <th scope="col">
+                                    Designation
+                                </th>
+
+                                <th scope="col">
+                                    Department
+                                </th>
+
+                                <th scope="col">
+                                    Status
+                                </th>
+
+                                <th scope="col">
+                                    Joining Date
+                                </th>
+
+                                <th scope="col">
+                                    Actions
+                                </th>
+
+                            </tr>
+                        </thead>
+
+
+                        <tbody id="employee-table-body">
+
+                            <!--
+                                JavaScript will render employee rows here.
+                            -->
+
+                            <tr id="directory-empty-row">
+                                <td colspan="7">
+                                    Employee records will appear here
+                                    when the directory loads.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- Pagination controls -->
+                <nav
+                    class="directory-pagination"
+                    aria-label="Employee directory pagination"
+                >
+
+                    <button
+                        type="button"
+                        class="button button-secondary"
+                        id="previous-page"
+                        disabled
+                    >
+                        Previous
+                    </button>
+
+                    <p
+                        id="pagination-status"
+                        aria-live="polite"
+                    >
+                        Page 1
+                    </p>
+
+                    <button
+                        type="button"
+                        class="button button-secondary"
+                        id="next-page"
+                        disabled
+                    >
+                        Next
+                    </button>
+
+                </nav>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer" id="site-footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <section
+                    class="footer-brand"
+                    aria-labelledby="footer-brand-title"
+                >
+
+                    <h2 id="footer-brand-title">
+                        Feedback
+                    </h2>
+
+                    <p>
+                        A centralized workspace for employee profiles,
+                        task updates, and team performance.
+                    </p>
+
+                    <blockquote>
+                        Clear goals. Visible progress. Better teamwork.
+                    </blockquote>
+
+                </section>
+
+
+                <nav
+                    class="footer-navigation"
+                    aria-label="Footer navigation"
+                >
+
+                    <h2>Quick Links</h2>
+
+                    <ul>
+
+                        <li>
+                            <a href="../index.html">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="all-employees.html">
+                                All Employees
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tasks.html">
+                                Task Management
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="analytics.html">
+                                Analytics
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="about.html">
+                                About Company
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+
+                <section
+                    class="footer-contact"
+                    aria-labelledby="footer-contact-title"
+                >
+
+                    <h2 id="footer-contact-title">
+                        Company Information
+                    </h2>
+
+                    <p>
+                        Visit the company's official website for
+                        company information and services.
+                    </p>
+
+                    <a
+                        href="https://bssoln.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Visit BSSOLN &rarr;
+                    </a>
+
+                    <p class="contact-note">
+                        Official contact details will be added
+                        after verification.
+                    </p>
+
+                </section>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; <span id="copyright-year">2026</span>
+                    Feedback. All rights reserved.
+                </p>
+
+                <a href="#site-header">
+                    Back to Top &uarr;
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

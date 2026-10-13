@@ -1,0 +1,139 @@
+/* ==================================================
+   Feedback - Global Design System
+   File: css/variables.css
+   Purpose: Centralized design tokens for the website
+   ================================================== */
+
+
+/* 1. GLOBAL DESIGN TOKENS */
+:root {
+
+    /* ---------- Colour Palette ---------- */
+
+    --color-primary: #083D91;
+    --color-white: #FFFFFF;
+    --color-neutral: #64748B;
+
+    /* Derived colours using the primary colour */
+    --color-primary-light: rgba(8, 61, 145, 0.06);
+    --color-primary-border: rgba(8, 61, 145, 0.15);
+    --color-primary-hover: rgba(8, 61, 145, 0.90);
+    --color-primary-shadow: rgba(8, 61, 145, 0.10);
+    --color-focus-ring: rgba(8, 61, 145, 0.25);
+
+    /* ---------- Typography ---------- */
+
+    --font-primary: "Inter", "Segoe UI", Arial, sans-serif;
+
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.125rem;
+    --font-size-lg: 1.25rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: 2rem;
+    --font-size-3xl: 2.5rem;
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.6;
+    --line-height-relaxed: 1.8;
+
+    /* ---------- Spacing ---------- */
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+
+    /* ---------- Border Radius ---------- */
+
+    --radius-sm: 0.375rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+    --radius-full: 9999px;
+
+    /* ---------- Borders ---------- */
+
+    --border-width: 1px;
+    --border-default: var(--border-width) solid var(--color-primary-border);
+
+    /* ---------- Shadows ---------- */
+
+    --shadow-sm: 0 2px 8px var(--color-primary-shadow);
+
+    --shadow-md: 0 6px 20px var(--color-primary-shadow);
+
+    --shadow-lg: 0 12px 32px var(--color-primary-shadow);
+
+    /* ---------- Layout ---------- */
+
+    --container-width: 1200px;
+
+    --container-padding: 1.5rem;
+
+    --header-height: 80px;
+
+    /* ---------- Transitions ---------- */
+
+    --transition-fast: 150ms ease;
+
+    --transition-normal: 250ms ease;
+
+    /* ---------- Layering / Stacking ---------- */
+
+    --z-dropdown: 100;
+
+    --z-header: 1000;
+
+    --z-modal: 2000;
+
+}
+
+
+/* 2. GLOBAL BOX MODEL */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+/* 3. REDUCE UNEXPECTED DEFAULT SPACING */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+}
+
+
+/* 4. RESPONSIVE MEDIA PREFERENCE */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}

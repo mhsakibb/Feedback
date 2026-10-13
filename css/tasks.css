@@ -1,0 +1,816 @@
+/* ==================================================
+   Feedback - Task Management Styles
+   File: css/tasks.css
+
+   Responsibilities:
+   1. Task page introduction
+   2. Task overview metrics
+   3. Assignment form
+   4. Task search and filters
+   5. Task register table
+   6. Status and priority badges
+   7. Progress bars and pagination
+   8. Responsive layout
+   ================================================== */
+
+
+/* 1. RESPECT HTML HIDDEN ATTRIBUTE */
+
+[hidden] {
+    display: none !important;
+}
+
+
+/* 2. TASK PAGE HERO */
+
+.tasks-hero {
+    padding-block: var(--space-12);
+
+    background-color: var(--color-primary-light);
+    border-bottom: var(--border-default);
+}
+
+.tasks-hero h1 {
+    margin-bottom: var(--space-4);
+
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.03em;
+}
+
+.tasks-hero-description {
+    max-width: 700px;
+    margin-bottom: var(--space-6);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+}
+
+
+/* 3. TASK OVERVIEW */
+
+.task-overview {
+    background-color: var(--color-white);
+}
+
+.task-metrics-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+}
+
+
+/* Individual metric card */
+
+.task-metric-card {
+    min-width: 0;
+    padding: var(--space-6);
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    transition:
+        border-color var(--transition-normal),
+        box-shadow var(--transition-normal);
+}
+
+.task-metric-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.task-metric-card h3 {
+    margin-bottom: var(--space-4);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: var(--line-height-normal);
+}
+
+.task-metric-value {
+    margin-bottom: var(--space-3);
+
+    color: var(--color-primary);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+
+    overflow-wrap: anywhere;
+}
+
+.task-metric-description {
+    margin-bottom: 0;
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-normal);
+}
+
+
+/* 4. ASSIGN TASK SECTION */
+
+.assign-task-section {
+    background-color: var(--color-primary-light);
+    border-block: var(--border-default);
+}
+
+
+/* Task form panel */
+
+.task-form {
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+
+    padding: var(--space-8);
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-xl);
+
+    box-shadow: var(--shadow-sm);
+}
+
+
+/* Individual form field */
+
+.task-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+
+    min-width: 0;
+}
+
+.task-form-field-full {
+    grid-column: 1 / -1;
+}
+
+.task-form-field label {
+    color: var(--color-primary);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+}
+
+.task-form-field label span {
+    font-weight: var(--font-weight-bold);
+}
+
+
+/* Text inputs, select menus and textareas */
+
+.task-form-field input,
+.task-form-field select,
+.task-form-field textarea {
+    display: block;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+
+    padding: var(--space-3);
+
+    background-color: var(--color-white);
+    color: var(--color-primary);
+
+    border: var(--border-default);
+    border-radius: var(--radius-md);
+
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.task-form-field textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.task-form-field input::placeholder,
+.task-form-field textarea::placeholder {
+    color: var(--color-neutral);
+    opacity: 1;
+}
+
+.task-form-field input:focus,
+.task-form-field select:focus,
+.task-form-field textarea:focus {
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+
+/* Form helper text */
+
+.task-form-field small {
+    color: var(--color-neutral);
+
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-normal);
+}
+
+
+/* 5. TASK FORM MESSAGE */
+
+.task-form-message {
+    grid-column: 1 / -1;
+
+    padding: var(--space-4);
+
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+
+    border: var(--border-default);
+    border-radius: var(--radius-md);
+
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+}
+
+.task-form-message:empty {
+    display: none;
+}
+
+
+/* 6. TASK FORM ACTIONS */
+
+.task-form-actions {
+    grid-column: 1 / -1;
+
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    padding-top: var(--space-2);
+}
+
+.task-form-actions .button {
+    min-width: 150px;
+}
+
+
+/* 7. TASK REGISTER SECTION */
+
+.task-register-section {
+    background-color: var(--color-white);
+}
+
+
+/* 8. TASK FILTER FORM */
+
+.task-filter-form {
+    display: grid;
+
+    grid-template-columns:
+        minmax(200px, 1.5fr)
+        repeat(3, minmax(130px, 1fr));
+
+    align-items: end;
+    gap: var(--space-4);
+
+    margin-bottom: var(--space-6);
+    padding: var(--space-5);
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+}
+
+.task-filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+
+    min-width: 0;
+}
+
+.task-filter-field label {
+    color: var(--color-primary);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+.task-filter-field input,
+.task-filter-field select {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+
+    padding: var(--space-3);
+
+    background-color: var(--color-white);
+    color: var(--color-primary);
+
+    border: var(--border-default);
+    border-radius: var(--radius-md);
+
+    font-size: var(--font-size-sm);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.task-filter-field input::placeholder {
+    color: var(--color-neutral);
+    opacity: 1;
+}
+
+.task-filter-field input:focus,
+.task-filter-field select:focus {
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+
+/* Filter actions */
+
+.task-filter-actions {
+    grid-column: 1 / -1;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    padding-top: var(--space-2);
+}
+
+.task-filter-actions .button {
+    flex: 1 1 150px;
+}
+
+
+/* 9. TASK RESULTS TOOLBAR */
+
+.task-register-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    margin-bottom: var(--space-4);
+}
+
+.task-register-toolbar p {
+    margin-bottom: 0;
+
+    color: var(--color-neutral);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+
+/* 10. TASK TABLE WRAPPER */
+
+.task-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+
+    background-color: var(--color-white);
+
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow-sm);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neutral) var(--color-white);
+}
+
+.task-table-wrapper:focus-visible {
+    outline-offset: 3px;
+}
+
+
+/* 11. TASK TABLE */
+
+.task-table {
+    width: 100%;
+    min-width: 1050px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-sm);
+    text-align: left;
+}
+
+
+/* Table header */
+
+.task-table thead {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.task-table th {
+    padding: var(--space-4);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+
+    white-space: nowrap;
+
+    border-bottom: var(--border-width) solid var(--color-primary);
+}
+
+
+/* Table cells */
+
+.task-table td {
+    padding: var(--space-4);
+
+    vertical-align: middle;
+
+    border-bottom: var(--border-default);
+
+    line-height: var(--line-height-normal);
+}
+
+.task-table tbody tr {
+    background-color: var(--color-white);
+
+    transition: background-color var(--transition-fast);
+}
+
+.task-table tbody tr:hover {
+    background-color: var(--color-primary-light);
+}
+
+.task-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* Task title and description */
+
+.task-title-cell {
+    min-width: 190px;
+
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+
+    overflow-wrap: anywhere;
+}
+
+.task-description-cell {
+    display: block;
+    margin-top: var(--space-1);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+
+    overflow-wrap: anywhere;
+}
+
+
+/* Assignee and date cells */
+
+.task-assignee-cell {
+    min-width: 150px;
+}
+
+.task-assignee-cell a {
+    font-weight: var(--font-weight-medium);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.task-date-cell {
+    min-width: 120px;
+    white-space: nowrap;
+}
+
+
+/* 12. STATUS AND PRIORITY BADGES */
+
+/*
+   Use the primary blue, white and grey palette.
+   Meaning is conveyed by visible text, not colour alone.
+*/
+
+.task-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 100%;
+    padding: var(--space-1) var(--space-3);
+
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+
+    border: var(--border-width) solid var(--color-primary-border);
+    border-radius: var(--radius-full);
+
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+
+    white-space: nowrap;
+}
+
+.task-badge-neutral {
+    background-color: var(--color-white);
+    color: var(--color-neutral);
+
+    border-color: var(--color-neutral);
+}
+
+
+/* Optional overdue label */
+
+.task-overdue-label {
+    display: inline-block;
+
+    margin-top: var(--space-1);
+    padding: var(--space-1) var(--space-2);
+
+    background-color: var(--color-white);
+    color: var(--color-neutral);
+
+    border: var(--border-width) solid var(--color-neutral);
+    border-radius: var(--radius-sm);
+
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+
+/* 13. TASK PROGRESS */
+
+.task-progress {
+    min-width: 100px;
+}
+
+.task-progress-label {
+    display: block;
+
+    margin-bottom: var(--space-2);
+
+    color: var(--color-primary);
+
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.task-progress-track {
+    width: 100%;
+    height: 7px;
+
+    overflow: hidden;
+
+    background-color: var(--color-primary-light);
+
+    border: var(--border-width) solid var(--color-primary-border);
+    border-radius: var(--radius-full);
+}
+
+.task-progress-fill {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    background-color: var(--color-primary);
+
+    border-radius: var(--radius-full);
+
+    transition: width var(--transition-normal);
+}
+
+
+/* 14. TASK TABLE ACTIONS */
+
+.task-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+
+    min-width: 150px;
+}
+
+.task-actions .button {
+    min-height: 36px;
+    padding: var(--space-2) var(--space-3);
+
+    font-size: var(--font-size-xs);
+}
+
+
+/* Inline status and progress controls */
+
+.task-inline-control {
+    width: 100%;
+    min-width: 115px;
+    min-height: 38px;
+
+    padding: var(--space-2);
+
+    background-color: var(--color-white);
+    color: var(--color-primary);
+
+    border: var(--border-default);
+    border-radius: var(--radius-sm);
+
+    font-size: var(--font-size-xs);
+}
+
+.task-inline-control:focus {
+    outline: none;
+
+    border-color: var(--color-primary);
+
+    box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+
+/* 15. EMPTY TASK TABLE */
+
+.task-table .empty-row td {
+    padding: var(--space-10) var(--space-5);
+
+    color: var(--color-neutral);
+
+    text-align: center;
+    line-height: var(--line-height-relaxed);
+}
+
+.task-table .empty-row:hover {
+    background-color: var(--color-white);
+}
+
+
+/* 16. TASK PAGINATION */
+
+.task-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+
+    margin-top: var(--space-6);
+}
+
+.task-pagination p {
+    min-width: 90px;
+
+    margin-bottom: 0;
+
+    color: var(--color-neutral);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+
+    text-align: center;
+}
+
+.task-pagination .button {
+    min-width: 105px;
+}
+
+.task-pagination .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* 17. RESPONSIVE LAYOUT */
+
+
+/* Tablets and smaller desktops */
+
+@media (max-width: 1000px) {
+
+    .task-metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .task-filter-form {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+/* Mobile landscape and small tablets */
+
+@media (max-width: 650px) {
+
+    .tasks-hero {
+        padding-block: var(--space-10);
+    }
+
+    .tasks-hero-description {
+        font-size: var(--font-size-base);
+    }
+
+    .task-form {
+        grid-template-columns: minmax(0, 1fr);
+
+        padding: var(--space-5);
+        gap: var(--space-5);
+    }
+
+    .task-form-field-full {
+        grid-column: auto;
+    }
+
+    .task-form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .task-form-actions .button {
+        width: 100%;
+    }
+
+    .task-filter-form {
+        grid-template-columns: minmax(0, 1fr);
+        padding: var(--space-4);
+    }
+
+    .task-filter-actions {
+        flex-direction: column;
+    }
+
+    .task-filter-actions .button {
+        width: 100%;
+        flex-basis: auto;
+    }
+
+    .task-pagination {
+        gap: var(--space-2);
+    }
+
+    .task-pagination .button {
+        flex: 1 1 100px;
+        min-width: 0;
+    }
+
+}
+
+
+/* Small mobile screens */
+
+@media (max-width: 380px) {
+
+    .task-metrics-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .task-metric-card {
+        padding: var(--space-5);
+    }
+
+    .task-pagination {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .task-pagination p {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .task-pagination #previous-task-page,
+    .task-pagination #next-task-page {
+        grid-row: 2;
+    }
+
+}

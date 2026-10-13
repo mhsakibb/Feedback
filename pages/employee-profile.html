@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Employee information should not appear in search results -->
+    <meta name="robots" content="noindex, nofollow">
+
+    <meta
+        name="description"
+        content="View employee professional information, assigned tasks, progress updates, and performance summary in Feedback."
+    >
+
+    <meta name="theme-color" content="#083D91">
+
+    <title>Employee Profile | Feedback</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/common.css">
+
+    <!-- Profile-specific styles -->
+    <link rel="stylesheet" href="../css/employee-profile.css">
+
+    <!-- Profile functionality -->
+    <script type="module" src="../js/employee-profile.js"></script>
+</head>
+
+<body>
+
+    <!-- Accessibility: Skip to main content -->
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header" id="site-header">
+
+        <div class="container header-container">
+
+            <!-- Brand -->
+            <a
+                class="brand"
+                href="../index.html"
+                aria-label="Feedback home"
+            >
+                <img
+                    class="brand-logo"
+                    src="../images/company-logo.png"
+                    alt=""
+                    width="44"
+                    height="44"
+                >
+
+                <span class="brand-name">Feedback</span>
+            </a>
+
+
+            <!-- Main navigation -->
+            <nav
+                class="primary-navigation"
+                aria-label="Main navigation"
+            >
+                <ul class="navigation-list">
+
+                    <li>
+                        <a href="../index.html">
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="all-employees.html"
+                            aria-current="page"
+                        >
+                            All Employees
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="tasks.html#assign-task">
+                            Assign Task
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="analytics.html">
+                            Analytics
+                        </a>
+                    </li>
+
+                    <li>
+                        <details class="nav-dropdown">
+
+                            <summary>About</summary>
+
+                            <ul class="dropdown-list">
+
+                                <li>
+                                    <a href="about.html#at-a-glance">
+                                        At a Glance
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="about.html#mission-vision">
+                                        Mission &amp; Vision
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="about.html#history">
+                                        Company History
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="about.html#policies">
+                                        Policies &amp; Regulations
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </details>
+                    </li>
+
+                </ul>
+            </nav>
+
+
+            <!-- Shared search -->
+            <div class="header-tools">
+
+                <form
+                    class="employee-search"
+                    id="employee-search-form"
+                    role="search"
+                    action="../index.html"
+                    method="get"
+                >
+
+                    <label
+                        class="visually-hidden"
+                        for="employee-search"
+                    >
+                        Search employees by name, ID, or department
+                    </label>
+
+                    <input
+                        type="search"
+                        id="employee-search"
+                        name="q"
+                        placeholder="Search employees or departments..."
+                        autocomplete="off"
+                        aria-controls="employee-search-results"
+                    >
+
+                    <button
+                        type="submit"
+                        class="button button-primary"
+                    >
+                        Search
+                    </button>
+
+                    <div
+                        class="search-results"
+                        id="employee-search-results"
+                        aria-live="polite"
+                        hidden
+                    ></div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main id="main-content">
+
+        <!-- Breadcrumb navigation -->
+        <section
+            class="profile-breadcrumb-section"
+            aria-label="Breadcrumb"
+        >
+
+            <div class="container">
+
+                <nav aria-label="Breadcrumb navigation">
+
+                    <ol class="profile-breadcrumb">
+
+                        <li>
+                            <a href="../index.html">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="all-employees.html">
+                                All Employees
+                            </a>
+                        </li>
+
+                        <li aria-current="page">
+                            Employee Profile
+                        </li>
+
+                    </ol>
+
+                </nav>
+
+            </div>
+
+        </section>
+
+
+        <!-- Loading state -->
+        <section
+            class="profile-loading section"
+            id="profile-loading"
+            aria-live="polite"
+        >
+
+            <div class="container">
+
+                <p>Loading employee profile...</p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Employee not found state -->
+        <section
+            class="profile-not-found section"
+            id="profile-not-found"
+            aria-labelledby="profile-not-found-title"
+            hidden
+        >
+
+            <div class="container">
+
+                <h1 id="profile-not-found-title">
+                    Employee Not Found
+                </h1>
+
+                <p>
+                    The requested employee profile could not be found.
+                    The employee may not exist or the profile link may
+                    be invalid.
+                </p>
+
+                <a
+                    class="button button-primary"
+                    href="all-employees.html"
+                >
+                    Return to Employee Directory
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <!-- Dynamic employee profile -->
+        <div id="employee-profile-content" hidden>
+
+            <!-- Profile overview -->
+            <section
+                class="profile-overview section"
+                aria-labelledby="profile-employee-name"
+            >
+
+                <div class="container">
+
+                    <div class="profile-overview-card">
+
+                        <!-- Employee portrait -->
+                        <div class="profile-photo-container">
+
+                            <img
+                                class="profile-photo"
+                                id="profile-photo"
+                                src=""
+                                alt=""
+                                width="220"
+                                height="220"
+                            >
+
+                        </div>
+
+
+                        <!-- Basic employee information -->
+                        <div class="profile-identity">
+
+                            <p class="eyebrow">
+                                EMPLOYEE PROFILE
+                            </p>
+
+                            <h1 id="profile-employee-name">
+                                Employee Name
+                            </h1>
+
+                            <p
+                                class="profile-designation"
+                                id="profile-designation"
+                            >
+                                Designation
+                            </p>
+
+                            <p
+                                class="profile-department"
+                                id="profile-department"
+                            >
+                                Department
+                            </p>
+
+                            <p
+                                class="profile-employee-id"
+                                id="profile-employee-id"
+                            >
+                                Employee ID
+                            </p>
+
+                            <span
+                                class="status-badge"
+                                id="profile-status"
+                            >
+                                Status
+                            </span>
+
+
+                            <!-- Profile actions -->
+                            <div class="profile-actions">
+
+                                <a
+                                    class="button button-primary"
+                                    id="assign-task-link"
+                                    href="tasks.html#assign-task"
+                                >
+                                    Assign Task
+                                </a>
+
+                                <a
+                                    class="button button-secondary"
+                                    href="all-employees.html"
+                                >
+                                    Back to Directory
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Main profile details -->
+            <section
+                class="profile-details-section section"
+                aria-labelledby="profile-details-title"
+            >
+
+                <div class="container">
+
+                    <div class="section-heading">
+
+                        <h2 id="profile-details-title">
+                            Professional Information
+                        </h2>
+
+                        <p>
+                            Review the employee's work-related
+                            information and professional background.
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-details-grid">
+
+                        <!-- Contact and employment -->
+                        <article class="profile-detail-card">
+
+                            <h3>Employment Details</h3>
+
+                            <dl class="profile-information-list">
+
+                                <div class="profile-information-item">
+
+                                    <dt>Employee ID</dt>
+
+                                    <dd id="detail-employee-id">
+                                        —
+                                    </dd>
+
+                                </div>
+
+                                <div class="profile-information-item">
+
+                                    <dt>Designation</dt>
+
+                                    <dd id="detail-designation">
+                                        —
+                                    </dd>
+
+                                </div>
+
+                                <div class="profile-information-item">
+
+                                    <dt>Department</dt>
+
+                                    <dd id="detail-department">
+                                        —
+                                    </dd>
+
+                                </div>
+
+                                <div class="profile-information-item">
+
+                                    <dt>Joining Date</dt>
+
+                                    <dd id="detail-joining-date">
+                                        —
+                                    </dd>
+
+                                </div>
+
+                                <div class="profile-information-item">
+
+                                    <dt>Employment Status</dt>
+
+                                    <dd id="detail-employment-status">
+                                        —
+                                    </dd>
+
+                                </div>
+
+                            </dl>
+
+                        </article>
+
+
+                        <!-- Professional summary -->
+                        <article class="profile-detail-card">
+
+                            <h3>Professional Summary</h3>
+
+                            <p id="profile-summary">
+                                Professional summary will appear here.
+                            </p>
+
+                            <h4>Skills &amp; Expertise</h4>
+
+                            <ul
+                                class="profile-skills-list"
+                                id="profile-skills"
+                            >
+
+                                <li>
+                                    Skills will appear here.
+                                </li>
+
+                            </ul>
+
+                        </article>
+
+
+                        <!-- Contact information -->
+                        <article class="profile-detail-card">
+
+                            <h3>Contact Information</h3>
+
+                            <dl class="profile-information-list">
+
+                                <div class="profile-information-item">
+
+                                    <dt>Work Email</dt>
+
+                                    <dd id="profile-email">
+                                        —
+                                    </dd>
+
+                                </div>
+
+                            </dl>
+
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Employee performance summary -->
+            <section
+                class="profile-performance-section section"
+                aria-labelledby="profile-performance-title"
+            >
+
+                <div class="container">
+
+                    <div class="section-heading">
+
+                        <h2 id="profile-performance-title">
+                            Task Overview
+                        </h2>
+
+                        <p>
+                            Review assigned work and current task progress.
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-task-metrics">
+
+                        <article class="profile-task-metric">
+
+                            <h3>Total Tasks</h3>
+
+                            <p
+                                class="profile-task-metric-value"
+                                id="profile-total-tasks"
+                            >
+                                0
+                            </p>
+
+                        </article>
+
+
+                        <article class="profile-task-metric">
+
+                            <h3>In Progress</h3>
+
+                            <p
+                                class="profile-task-metric-value"
+                                id="profile-in-progress-tasks"
+                            >
+                                0
+                            </p>
+
+                        </article>
+
+
+                        <article class="profile-task-metric">
+
+                            <h3>Awaiting Review</h3>
+
+                            <p
+                                class="profile-task-metric-value"
+                                id="profile-review-tasks"
+                            >
+                                0
+                            </p>
+
+                        </article>
+
+
+                        <article class="profile-task-metric">
+
+                            <h3>Overdue</h3>
+
+                            <p
+                                class="profile-task-metric-value"
+                                id="profile-overdue-tasks"
+                            >
+                                0
+                            </p>
+
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Assigned tasks -->
+            <section
+                class="profile-assigned-tasks section"
+                aria-labelledby="assigned-tasks-title"
+            >
+
+                <div class="container">
+
+                    <div class="section-heading">
+
+                        <h2 id="assigned-tasks-title">
+                            Assigned Tasks
+                        </h2>
+
+                        <p>
+                            A list of tasks assigned to this employee,
+                            including priority, deadline and status.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="profile-task-table-wrapper"
+                        role="region"
+                        aria-label="Employee assigned tasks"
+                        tabindex="0"
+                    >
+
+                        <table class="profile-task-table">
+
+                            <caption class="visually-hidden">
+                                Tasks assigned to the selected employee,
+                                with task details, priority, due date,
+                                status and progress.
+                            </caption>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th scope="col">
+                                        Task
+                                    </th>
+
+                                    <th scope="col">
+                                        Priority
+                                    </th>
+
+                                    <th scope="col">
+                                        Due Date
+                                    </th>
+
+                                    <th scope="col">
+                                        Status
+                                    </th>
+
+                                    <th scope="col">
+                                        Progress
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+                            <tbody id="profile-task-table-body">
+
+                                <tr>
+                                    <td colspan="5">
+                                        Assigned tasks will appear here.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- Work updates and manager feedback -->
+            <section
+                class="profile-activity-section section"
+                aria-labelledby="profile-activity-title"
+            >
+
+                <div class="container">
+
+                    <div class="section-heading">
+
+                        <h2 id="profile-activity-title">
+                            Work Updates &amp; Feedback
+                        </h2>
+
+                        <p>
+                            Review recorded task updates and feedback
+                            associated with this employee's work.
+                        </p>
+
+                    </div>
+
+
+                    <div
+                        class="profile-activity-list"
+                        id="profile-activity-list"
+                        aria-live="polite"
+                    >
+
+                        <p class="empty-state">
+                            Work updates will appear here when available.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer" id="site-footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <section
+                    class="footer-brand"
+                    aria-labelledby="footer-brand-title"
+                >
+
+                    <h2 id="footer-brand-title">
+                        Feedback
+                    </h2>
+
+                    <p>
+                        A centralized workspace for employee profiles,
+                        task updates, and team performance.
+                    </p>
+
+                    <blockquote>
+                        Clear goals. Visible progress. Better teamwork.
+                    </blockquote>
+
+                </section>
+
+
+                <nav
+                    class="footer-navigation"
+                    aria-label="Footer navigation"
+                >
+
+                    <h2>Quick Links</h2>
+
+                    <ul>
+
+                        <li>
+                            <a href="../index.html">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="all-employees.html">
+                                All Employees
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="tasks.html">
+                                Task Management
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="analytics.html">
+                                Analytics
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="about.html">
+                                About Company
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+
+                <section
+                    class="footer-contact"
+                    aria-labelledby="footer-contact-title"
+                >
+
+                    <h2 id="footer-contact-title">
+                        Company Information
+                    </h2>
+
+                    <p>
+                        Visit the company's official website for
+                        company information and services.
+                    </p>
+
+                    <a
+                        href="https://bssoln.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Visit BSSOLN &rarr;
+                    </a>
+
+                    <p class="contact-note">
+                        Official contact details will be added
+                        after verification.
+                    </p>
+
+                </section>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; <span id="copyright-year">2026</span>
+                    Feedback. All rights reserved.
+                </p>
+
+                <a href="#site-header">
+                    Back to Top &uarr;
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>

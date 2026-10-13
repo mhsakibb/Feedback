@@ -1,0 +1,458 @@
+/* ==================================================
+   Feedback - All Employees Directory
+   File: css/all-employees.css
+   Purpose:
+   1. Directory page introduction
+   2. Employee filters and controls
+   3. Responsive employee table
+   4. Status badges
+   5. Pagination
+   ================================================== */
+
+
+/* 1. DIRECTORY HERO */
+
+.directory-hero {
+    padding-block: var(--space-12);
+    background-color: var(--color-primary-light);
+    border-bottom: var(--border-default);
+}
+
+.directory-hero h1 {
+    margin-bottom: var(--space-4);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.03em;
+}
+
+.directory-description {
+    max-width: 700px;
+    margin-bottom: 0;
+    color: var(--color-neutral);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-relaxed);
+}
+
+
+/* 2. DIRECTORY HEADING */
+
+.directory-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    margin-bottom: var(--space-8);
+}
+
+.directory-heading h2 {
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-2xl);
+}
+
+.directory-heading p {
+    max-width: 680px;
+    margin-bottom: 0;
+    color: var(--color-neutral);
+}
+
+
+/* 3. FILTER FORM */
+
+.directory-filters {
+    display: grid;
+    grid-template-columns:
+        minmax(200px, 1.5fr)
+        repeat(3, minmax(130px, 1fr));
+    gap: var(--space-4);
+    align-items: end;
+
+    margin-bottom: var(--space-6);
+    padding: var(--space-5);
+
+    background-color: var(--color-white);
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+}
+
+.filter-field label {
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+}
+
+.filter-field input,
+.filter-field select {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: var(--space-3);
+
+    background-color: var(--color-white);
+    color: var(--color-primary);
+
+    border: var(--border-default);
+    border-radius: var(--radius-md);
+
+    font-size: var(--font-size-sm);
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.filter-field input::placeholder {
+    color: var(--color-neutral);
+    opacity: 1;
+}
+
+.filter-field input:focus,
+.filter-field select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+
+/* Filter action buttons */
+
+.filter-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+
+    grid-column: 1 / -1;
+    padding-top: var(--space-2);
+}
+
+.filter-actions .button {
+    flex: 1 1 140px;
+}
+
+
+/* 4. DIRECTORY TOOLBAR */
+
+.directory-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+
+    margin-bottom: var(--space-4);
+}
+
+.directory-toolbar p {
+    margin-bottom: 0;
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+
+/* 5. TABLE WRAPPER */
+
+.employee-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+
+    background-color: var(--color-white);
+    border: var(--border-default);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neutral) var(--color-white);
+}
+
+.employee-table-wrapper:focus-visible {
+    outline-offset: 3px;
+}
+
+
+/* 6. EMPLOYEE TABLE */
+
+.employee-table {
+    width: 100%;
+    min-width: 900px;
+
+    border-collapse: separate;
+    border-spacing: 0;
+
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    text-align: left;
+}
+
+
+/* Table header */
+
+.employee-table thead {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.employee-table th {
+    padding: var(--space-4);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+
+    white-space: nowrap;
+    border-bottom: var(--border-width) solid var(--color-primary);
+}
+
+
+/* Table cells */
+
+.employee-table td {
+    padding: var(--space-4);
+    vertical-align: middle;
+
+    border-bottom: var(--border-default);
+
+    line-height: var(--line-height-normal);
+}
+
+.employee-table tbody tr {
+    background-color: var(--color-white);
+    transition: background-color var(--transition-fast);
+}
+
+.employee-table tbody tr:hover {
+    background-color: var(--color-primary-light);
+}
+
+.employee-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* Employee name and ID */
+
+.employee-table .employee-name-cell {
+    min-width: 150px;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-primary);
+}
+
+.employee-table .employee-id-cell {
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral);
+    white-space: nowrap;
+}
+
+.employee-table .employee-designation-cell,
+.employee-table .employee-department-cell {
+    min-width: 130px;
+    overflow-wrap: anywhere;
+}
+
+.employee-table .employee-date-cell {
+    white-space: nowrap;
+}
+
+
+/* 7. EMPLOYEE STATUS BADGES */
+
+/*
+   Intentionally use the existing blue, white and
+   neutral palette instead of adding new status colours.
+*/
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    max-width: 100%;
+    padding: var(--space-1) var(--space-3);
+
+    border: var(--border-width) solid var(--color-primary-border);
+    border-radius: var(--radius-full);
+
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-normal);
+
+    white-space: nowrap;
+}
+
+.status-inactive {
+    background-color: var(--color-white);
+    border-color: var(--color-neutral);
+    color: var(--color-neutral);
+}
+
+
+/* 8. TABLE ACTIONS */
+
+.employee-table .table-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 36px;
+    padding: var(--space-2) var(--space-3);
+
+    border: var(--border-width) solid var(--color-primary-border);
+    border-radius: var(--radius-sm);
+
+    background-color: var(--color-white);
+    color: var(--color-primary);
+
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+
+    white-space: nowrap;
+    transition:
+        background-color var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.employee-table .table-action:hover {
+    background-color: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+
+/* 9. EMPTY TABLE STATE */
+
+.employee-table .empty-row td {
+    padding: var(--space-10) var(--space-5);
+
+    color: var(--color-neutral);
+    text-align: center;
+    line-height: var(--line-height-relaxed);
+}
+
+.employee-table .empty-row:hover {
+    background-color: var(--color-white);
+}
+
+
+/* 10. PAGINATION */
+
+.directory-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+
+    margin-top: var(--space-6);
+}
+
+.directory-pagination p {
+    min-width: 90px;
+    margin-bottom: 0;
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-align: center;
+}
+
+.directory-pagination .button {
+    min-width: 105px;
+}
+
+.directory-pagination .button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* 11. RESPONSIVE LAYOUT */
+
+
+/* Tablet and smaller desktop */
+
+@media (max-width: 1000px) {
+
+    .directory-filters {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .filter-actions {
+        grid-column: 1 / -1;
+    }
+
+}
+
+
+/* Mobile landscape and small tablets */
+
+@media (max-width: 650px) {
+
+    .directory-hero {
+        padding-block: var(--space-10);
+    }
+
+    .directory-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .directory-heading > .button {
+        width: 100%;
+    }
+
+    .directory-filters {
+        grid-template-columns: minmax(0, 1fr);
+        padding: var(--space-4);
+    }
+
+    .filter-actions {
+        flex-direction: column;
+    }
+
+    .filter-actions .button {
+        width: 100%;
+        flex-basis: auto;
+    }
+
+    .directory-pagination {
+        gap: var(--space-2);
+    }
+
+    .directory-pagination .button {
+        flex: 1 1 100px;
+        min-width: 0;
+    }
+
+}
+
+
+/* Small mobile devices */
+
+@media (max-width: 380px) {
+
+    .directory-pagination {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .directory-pagination p {
+        grid-column: 1 / -1;
+        grid-row: 1;
+    }
+
+    .directory-pagination #previous-page,
+    .directory-pagination #next-page {
+        grid-row: 2;
+    }
+
+}

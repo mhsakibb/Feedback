@@ -1,0 +1,839 @@
+/* ==================================================
+   Feedback - Shared Styles
+   File: css/common.css
+   Purpose: Global layout, buttons, navbar, search,
+            accessibility utilities and footer
+   ================================================== */
+
+
+/* 1. GLOBAL STYLES */
+
+body {
+    margin: 0;
+    min-width: 320px;
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--color-primary);
+    line-height: var(--line-height-tight);
+    font-weight: var(--font-weight-semibold);
+}
+
+p {
+    margin-bottom: var(--space-4);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button,
+summary {
+    cursor: pointer;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition:
+        color var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-hover);
+}
+
+
+/* 2. ACCESSIBILITY AND FOCUS STYLES */
+
+:focus-visible {
+    outline: 3px solid var(--color-focus-ring);
+    outline-offset: 3px;
+}
+
+.skip-link {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: var(--z-modal);
+
+    padding: var(--space-3) var(--space-4);
+
+    background-color: var(--color-primary);
+    color: var(--color-white);
+
+    border-radius: var(--radius-sm);
+
+    transform: translateY(-150%);
+    transition: transform var(--transition-fast);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+.skip-link:hover {
+    color: var(--color-white);
+}
+
+.visually-hidden {
+    position: absolute;
+
+    width: 1px;
+    height: 1px;
+
+    padding: 0;
+    margin: -1px;
+
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* 3. REUSABLE LAYOUT */
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+
+    margin-inline: auto;
+    padding-inline: var(--container-padding);
+}
+
+.section {
+    padding-block: var(--space-16);
+}
+
+.section-heading {
+    margin-bottom: var(--space-8);
+}
+
+.section-heading h2 {
+    margin-bottom: var(--space-3);
+    font-size: var(--font-size-2xl);
+}
+
+.section-heading p {
+    max-width: 680px;
+    margin-bottom: 0;
+    color: var(--color-neutral);
+}
+
+
+/* 4. SHARED BUTTONS */
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+
+    min-height: 44px;
+
+    padding: var(--space-3) var(--space-5);
+
+    border: var(--border-width) solid transparent;
+    border-radius: var(--radius-md);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+
+    text-align: center;
+    white-space: normal;
+
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-fast),
+        color var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.button-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+}
+
+.button-primary:hover {
+    background-color: var(--color-primary-hover);
+    color: var(--color-white);
+    box-shadow: var(--shadow-sm);
+}
+
+.button-secondary {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border-color: var(--color-primary-border);
+}
+
+.button-secondary:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+/* 5. HEADER */
+
+.site-header {
+    position: relative;
+    z-index: var(--z-header);
+
+    background-color: var(--color-white);
+    border-bottom: var(--border-default);
+}
+
+.header-container {
+    min-height: var(--header-height);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+}
+
+
+/* 6. BRAND / LOGO */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: var(--space-3);
+
+    color: var(--color-primary);
+}
+
+.brand:hover {
+    color: var(--color-primary);
+}
+
+.brand-logo {
+    width: 44px;
+    height: 44px;
+
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.brand-name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-tight);
+    letter-spacing: -0.02em;
+}
+
+
+/* 7. PRIMARY NAVIGATION */
+
+.primary-navigation {
+    min-width: 0;
+}
+
+.navigation-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+}
+
+.navigation-list > li {
+    position: relative;
+}
+
+.navigation-list > li > a,
+.nav-dropdown > summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: var(--space-2) var(--space-3);
+
+    border-radius: var(--radius-sm);
+
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+
+    white-space: nowrap;
+}
+
+.navigation-list > li > a:hover,
+.nav-dropdown > summary:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.navigation-list > li > a[aria-current="page"] {
+    font-weight: var(--font-weight-semibold);
+    background-color: var(--color-primary-light);
+}
+
+
+/* 8. ABOUT DROPDOWN */
+
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown > summary {
+    list-style: none;
+}
+
+.nav-dropdown > summary::-webkit-details-marker {
+    display: none;
+}
+
+.nav-dropdown > summary::after {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    margin-left: var(--space-2);
+
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform var(--transition-fast);
+}
+
+.nav-dropdown[open] > summary::after {
+    transform: translateY(2px) rotate(225deg);
+}
+
+.dropdown-list {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    right: 0;
+
+    z-index: var(--z-dropdown);
+
+    min-width: 230px;
+    padding: var(--space-2);
+    margin: 0;
+
+    background-color: var(--color-white);
+    border: var(--border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+
+    list-style: none;
+}
+
+.dropdown-list a {
+    display: block;
+
+    padding: var(--space-3);
+
+    border-radius: var(--radius-sm);
+
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+}
+
+.dropdown-list a:hover {
+    background-color: var(--color-primary-light);
+}
+
+
+/* 9. HEADER SEARCH */
+
+.header-tools {
+    flex-shrink: 1;
+    min-width: 0;
+}
+
+.employee-search {
+    position: relative;
+
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-2);
+
+    width: 100%;
+    min-width: 0;
+}
+
+.employee-search input {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+
+    padding: var(--space-3);
+
+    background-color: var(--color-white);
+    color: var(--color-primary);
+
+    border: var(--border-default);
+    border-radius: var(--radius-md);
+
+    font-size: var(--font-size-sm);
+
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.employee-search input::placeholder {
+    color: var(--color-neutral);
+    opacity: 1;
+}
+
+.employee-search input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+.employee-search button {
+    flex-shrink: 0;
+}
+
+
+/* Search results will be populated by JavaScript */
+
+.search-results {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    left: 0;
+    right: 0;
+
+    z-index: var(--z-dropdown);
+
+    max-height: 320px;
+    overflow-y: auto;
+
+    padding: var(--space-2);
+
+    background-color: var(--color-white);
+    border: var(--border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+.search-results[hidden] {
+    display: none;
+}
+
+
+/* 10. TEXT LINKS */
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.text-link:hover {
+    text-decoration-thickness: 2px;
+}
+
+
+/* 11. EMPTY STATES AND NOTICES */
+
+.empty-state,
+.notice {
+    padding: var(--space-6);
+
+    border: var(--border-default);
+    border-radius: var(--radius-md);
+
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+
+    text-align: center;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+}
+
+.notice {
+    margin-block: var(--space-6);
+}
+
+
+/* 12. FOOTER */
+
+.site-footer {
+    padding-top: var(--space-12);
+
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.site-footer h2 {
+    margin-bottom: var(--space-4);
+
+    color: var(--color-white);
+    font-size: var(--font-size-lg);
+}
+
+.site-footer p {
+    color: var(--color-white);
+    line-height: var(--line-height-relaxed);
+}
+
+.footer-content {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.5fr)
+        minmax(0, 1fr)
+        minmax(0, 1.2fr);
+
+    gap: var(--space-10);
+
+    padding-bottom: var(--space-10);
+}
+
+.footer-brand,
+.footer-navigation,
+.footer-contact {
+    min-width: 0;
+}
+
+.footer-brand blockquote {
+    margin: var(--space-5) 0 0;
+    padding-left: var(--space-4);
+
+    border-left: 3px solid var(--color-white);
+
+    color: var(--color-white);
+    font-size: var(--font-size-sm);
+    font-style: italic;
+}
+
+.footer-navigation ul {
+    padding: 0;
+    margin: 0;
+
+    list-style: none;
+}
+
+.footer-navigation li + li {
+    margin-top: var(--space-2);
+}
+
+.footer-navigation a,
+.footer-contact > a {
+    display: inline-block;
+
+    padding-block: var(--space-1);
+
+    color: var(--color-white);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+
+    overflow-wrap: anywhere;
+}
+
+.footer-navigation a:hover,
+.footer-contact > a:hover {
+    text-decoration-thickness: 2px;
+}
+
+.footer-contact .contact-note {
+    margin-top: var(--space-4);
+    font-size: var(--font-size-sm);
+}
+
+
+/* Copyright row */
+
+.footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+
+    padding-block: var(--space-5);
+
+    border-top: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+}
+
+.footer-bottom a {
+    color: var(--color-white);
+    font-size: var(--font-size-sm);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+
+/* ==================================================
+   13. RESPONSIVE STYLES
+   ================================================== */
+
+
+/* Medium screens and tablets */
+
+@media (max-width: 1050px) {
+
+    .header-container {
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        padding-block: var(--space-4);
+    }
+
+    .brand {
+        margin-right: auto;
+    }
+
+    .primary-navigation {
+        order: 3;
+        flex: 1 1 100%;
+    }
+
+    .navigation-list {
+        justify-content: flex-start;
+    }
+
+    .header-tools {
+        flex: 1 1 100%;
+        order: 4;
+    }
+
+    .employee-search {
+        max-width: 520px;
+    }
+
+    .footer-content {
+        gap: var(--space-6);
+    }
+
+}
+
+
+/* Small screens and mobile devices */
+
+@media (max-width: 600px) {
+
+    :root {
+        --container-padding: 1rem;
+        --header-height: auto;
+    }
+
+    .header-container {
+        align-items: stretch;
+        gap: var(--space-4);
+    }
+
+    .brand {
+        align-self: flex-start;
+    }
+
+    .primary-navigation {
+        width: 100%;
+    }
+
+    .navigation-list {
+        justify-content: flex-start;
+        gap: var(--space-1);
+    }
+
+    .navigation-list > li > a,
+    .nav-dropdown > summary {
+        min-height: 40px;
+        padding-inline: var(--space-2);
+        font-size: var(--font-size-sm);
+    }
+
+    .dropdown-list {
+        right: auto;
+        left: 0;
+        min-width: 210px;
+    }
+
+    .header-tools {
+        width: 100%;
+    }
+
+    .employee-search {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: var(--space-2);
+    }
+
+    .employee-search button {
+        padding-inline: var(--space-3);
+    }
+
+    .section {
+        padding-block: var(--space-10);
+    }
+
+    .section-heading h2 {
+        font-size: var(--font-size-xl);
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+    }
+
+    .footer-bottom {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+}
+
+/* ==================================================
+   14. SEARCH RESULT DROPDOWN
+   ================================================== */
+
+
+/* Group heading */
+
+.search-result-heading {
+    margin: var(--space-2) 0;
+    padding: var(--space-2) var(--space-3);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+
+/* Department suggestion buttons */
+
+.search-results .button {
+    display: flex;
+    justify-content: flex-start;
+
+    width: 100%;
+    min-height: 42px;
+
+    margin-bottom: var(--space-1);
+    padding: var(--space-3);
+
+    border: none;
+    border-radius: var(--radius-sm);
+
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    text-align: left;
+}
+
+
+/* Employee suggestion links */
+
+.search-result-item {
+    display: block;
+    width: 100%;
+
+    padding: var(--space-3);
+
+    border-radius: var(--radius-sm);
+
+    background-color: var(--color-white);
+    color: var(--color-primary);
+
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+
+    overflow-wrap: anywhere;
+    transition: background-color var(--transition-fast);
+}
+
+.search-result-item:hover {
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+
+/* Keyboard focus for employee suggestions */
+
+.search-result-item:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+}
+
+
+/* No matching result */
+
+.search-result-empty {
+    margin: 0;
+    padding: var(--space-4);
+
+    color: var(--color-neutral);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+}
+
+
+/* Avoid unwanted spacing inside search dropdown */
+
+.search-results > :last-child {
+    margin-bottom: 0;
+}
