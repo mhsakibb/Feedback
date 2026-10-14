@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots" content="noindex, nofollow">
+
+    <meta
+        name="description"
+        content="Analyze employee workload, department performance, task completion, and overdue work in the Feedback management dashboard."
+    >
+
+    <meta name="theme-color" content="#083D91">
+
+    <title>Analytics | Feedback</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Shared CSS -->
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/common.css">
+
+    <!-- Analytics CSS -->
+    <link rel="stylesheet" href="../css/analytics.css">
+
+    <!-- Analytics JavaScript -->
+    <script type="module" src="../js/analytics.js"></script>
+</head>
+
+<body>
+
+    <a class="skip-link" href="#main-content">
+        Skip to main content
+    </a>
+
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="site-header" id="site-header">
+
+        <div class="container header-container">
+
+            <a
+                class="brand"
+                href="../index.html"
+                aria-label="Feedback home"
+            >
+                <img
+                    class="brand-logo"
+                    src="../images/company-logo.png"
+                    alt=""
+                    width="44"
+                    height="44"
+                >
+
+                <span class="brand-name">Feedback</span>
+            </a>
+
+
+            <nav
+                class="primary-navigation"
+                aria-label="Main navigation"
+            >
+                <ul class="navigation-list">
+
+                    <li>
+                        <a href="../index.html">
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="all-employees.html">
+                            All Employees
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="tasks.html">
+                            Task Management
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="analytics.html"
+                            aria-current="page"
+                        >
+                            Analytics
+                        </a>
+                    </li>
+
+                    <li>
+                        <details class="nav-dropdown">
+
+                            <summary>About</summary>
+
+                            <ul class="dropdown-list">
+
+                                <li>
+                                    <a href="about.html#at-a-glance">
+                                        At a Glance
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="about.html#mission-vision">
+                                        Mission &amp; Vision
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="about.html#history">
+                                        Company History
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="about.html#policies">
+                                        Policies &amp; Regulations
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </details>
+                    </li>
+
+                </ul>
+            </nav>
+
+
+            <!-- Shared employee search -->
+            <div class="header-tools">
+
+                <form
+                    class="employee-search"
+                    id="employee-search-form"
+                    role="search"
+                    action="../index.html"
+                    method="get"
+                >
+
+                    <label
+                        class="visually-hidden"
+                        for="employee-search"
+                    >
+                        Search employees by name, ID, or department
+                    </label>
+
+                    <input
+                        type="search"
+                        id="employee-search"
+                        name="q"
+                        placeholder="Search employees or departments..."
+                        autocomplete="off"
+                        aria-controls="employee-search-results"
+                    >
+
+                    <button
+                        type="submit"
+                        class="button button-primary"
+                    >
+                        Search
+                    </button>
+
+                    <div
+                        class="search-results"
+                        id="employee-search-results"
+                        aria-live="polite"
+                        hidden
+                    ></div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main id="main-content">
+
+        <!-- Page introduction -->
+        <section
+            class="analytics-hero"
+            aria-labelledby="analytics-title"
+        >
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    COMPANY INSIGHTS
+                </p>
+
+                <h1 id="analytics-title">
+                    Performance Analytics
+                </h1>
+
+                <p class="analytics-description">
+                    Understand task completion, monitor deadlines,
+                    compare departmental workloads, and review
+                    employee progress using recorded task data.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== FILTERS ==================== -->
+        <section
+            class="analytics-filters-section"
+            aria-labelledby="analytics-filters-title"
+        >
+
+            <div class="container">
+
+                <div class="analytics-filter-panel">
+
+                    <h2 id="analytics-filters-title">
+                        Report Filters
+                    </h2>
+
+                    <form
+                        class="analytics-filter-form"
+                        id="analytics-filter-form"
+                    >
+
+                        <div class="analytics-filter-field">
+
+                            <label for="analytics-period">
+                                Reporting Period
+                            </label>
+
+                            <select
+                                id="analytics-period"
+                                name="period"
+                            >
+
+                                <option value="all">
+                                    All Tasks
+                                </option>
+
+                                <option value="7">
+                                    Last 7 Days
+                                </option>
+
+                                <option value="30">
+                                    Last 30 Days
+                                </option>
+
+                                <option value="90">
+                                    Last 90 Days
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="analytics-filter-field">
+
+                            <label for="analytics-department">
+                                Department
+                            </label>
+
+                            <select
+                                id="analytics-department"
+                                name="department"
+                            >
+
+                                <option value="">
+                                    All Departments
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="analytics-filter-actions">
+
+                            <button
+                                type="submit"
+                                class="button button-primary"
+                            >
+                                Apply Filters
+                            </button>
+
+                            <button
+                                type="reset"
+                                class="button button-secondary"
+                                id="reset-analytics-filters"
+                            >
+                                Reset
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== KPI CARDS ==================== -->
+        <section
+            class="analytics-overview section"
+            aria-labelledby="analytics-overview-title"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <h2 id="analytics-overview-title">
+                        Key Performance Indicators
+                    </h2>
+
+                    <p>
+                        Summary metrics calculated from the selected
+                        task records.
+                    </p>
+
+                </div>
+
+
+                <div class="analytics-kpi-grid">
+
+                    <article class="analytics-kpi-card">
+
+                        <h3>Total Employees</h3>
+
+                        <p
+                            class="analytics-kpi-value"
+                            id="analytics-total-employees"
+                        >
+                            —
+                        </p>
+
+                        <p class="analytics-kpi-description">
+                            Employees in the directory
+                        </p>
+
+                    </article>
+
+
+                    <article class="analytics-kpi-card">
+
+                        <h3>Total Tasks</h3>
+
+                        <p
+                            class="analytics-kpi-value"
+                            id="analytics-total-tasks"
+                        >
+                            —
+                        </p>
+
+                        <p class="analytics-kpi-description">
+                            Tasks matching the selected filters
+                        </p>
+
+                    </article>
+
+
+                    <article class="analytics-kpi-card">
+
+                        <h3>Completion Rate</h3>
+
+                        <p
+                            class="analytics-kpi-value"
+                            id="analytics-completion-rate"
+                        >
+                            —
+                        </p>
+
+                        <p class="analytics-kpi-description">
+                            Completed tasks as a percentage of
+                            eligible task records
+                        </p>
+
+                    </article>
+
+
+                    <article class="analytics-kpi-card">
+
+                        <h3>On-Time Completion</h3>
+
+                        <p
+                            class="analytics-kpi-value"
+                            id="analytics-on-time-rate"
+                        >
+                            —
+                        </p>
+
+                        <p class="analytics-kpi-description">
+                            Completed tasks finished by their deadlines
+                        </p>
+
+                    </article>
+
+
+                    <article class="analytics-kpi-card">
+
+                        <h3>In Progress</h3>
+
+                        <p
+                            class="analytics-kpi-value"
+                            id="analytics-in-progress"
+                        >
+                            —
+                        </p>
+
+                        <p class="analytics-kpi-description">
+                            Tasks currently underway
+                        </p>
+
+                    </article>
+
+
+                    <article class="analytics-kpi-card">
+
+                        <h3>Overdue Tasks</h3>
+
+                        <p
+                            class="analytics-kpi-value"
+                            id="analytics-overdue"
+                        >
+                            —
+                        </p>
+
+                        <p class="analytics-kpi-description">
+                            Incomplete tasks past their deadlines
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== CHARTS ==================== -->
+        <section
+            class="analytics-charts-section section"
+            aria-labelledby="analytics-charts-title"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <h2 id="analytics-charts-title">
+                        Performance Breakdown
+                    </h2>
+
+                    <p>
+                        Explore task distribution and compare
+                        departmental activity.
+                    </p>
+
+                </div>
+
+
+                <div class="analytics-charts-grid">
+
+                    <!-- Task status chart -->
+                    <article class="analytics-panel">
+
+                        <div class="analytics-panel-heading">
+
+                            <h3>Task Status Distribution</h3>
+
+                            <p>
+                                Tasks grouped by their current status.
+                            </p>
+
+                        </div>
+
+                        <div
+                            class="analytics-chart"
+                            id="task-status-chart"
+                            role="region"
+                            aria-label="Task status distribution chart"
+                            aria-live="polite"
+                        >
+
+                            <p class="empty-state">
+                                Task status chart will appear here.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Department comparison -->
+                    <article class="analytics-panel">
+
+                        <div class="analytics-panel-heading">
+
+                            <h3>Department Performance</h3>
+
+                            <p>
+                                Compare department task completion rates.
+                            </p>
+
+                        </div>
+
+                        <div
+                            class="analytics-chart"
+                            id="department-performance-chart"
+                            role="region"
+                            aria-label="Department performance comparison"
+                            aria-live="polite"
+                        >
+
+                            <p class="empty-state">
+                                Department comparison will appear here.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================== EMPLOYEE WORKLOAD ==================== -->
+        <section
+            class="analytics-workload-section section"
+            aria-labelledby="employee-workload-title"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <h2 id="employee-workload-title">
+                        Employee Workload
+                    </h2>
+
+                    <p>
+                        Review the distribution of assigned tasks
+                        across employees.
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="analytics-table-wrapper"
+                    role="region"
+                    aria-label="Employee workload report"
+                    tabindex="0"
+                >
+
+                    <table class="analytics-table">
+
+                        <caption class="visually-hidden">
+                            Employee workload report including employee,
+                            department, assigned tasks, completed tasks,
+                            in-progress tasks, and overdue tasks.
+                        </caption>
+
+                        <thead>
+
+                            <tr>
+
+                                <th scope="col">Employee</th>
+
+                                <th scope="col">Department</th>
+
+                                <th scope="col">Assigned Tasks</th>
+
+                                <th scope="col">Completed</th>
+
+                                <th scope="col">In Progress</th>
+
+                                <th scope="col">Overdue</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="employee-workload-body">
+
+                            <tr>
+
+                                <td colspan="6">
+                                    Employee workload data will appear here.
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Analytics explanation -->
+        <section
+            class="analytics-notes-section"
+            aria-labelledby="analytics-notes-title"
+        >
+
+            <div class="container">
+
+                <div class="analytics-notes">
+
+                    <h2 id="analytics-notes-title">
+                        Understanding These Metrics
+                    </h2>
+
+                    <p>
+                        Completion and on-time rates depend on the
+                        selected task records and their recorded
+                        deadlines. Workload counts indicate task volume;
+                        they do not independently measure the quality
+                        or complexity of an employee's work.
+                    </p>
+
+                    <p>
+                        This prototype calculates reports from locally
+                        stored demo data. Results are illustrative and
+                        should not be treated as verified company
+                        performance statistics.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="site-footer" id="site-footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <section
+                    class="footer-brand"
+                    aria-labelledby="footer-brand-title"
+                >
+
+                    <h2 id="footer-brand-title">
+                        Feedback
+                    </h2>
+
+                    <p>
+                        A centralized workspace for employee profiles,
+                        task updates, and team performance.
+                    </p>
+
+                    <blockquote>
+                        Clear goals. Visible progress. Better teamwork.
+                    </blockquote>
+
+                </section>
+
+
+                <nav
+                    class="footer-navigation"
+                    aria-label="Footer navigation"
+                >
+
+                    <h2>Quick Links</h2>
+
+                    <ul>
+
+                        <li>
+                            <a href="../index.html">Dashboard</a>
+                        </li>
+
+                        <li>
+                            <a href="all-employees.html">All Employees</a>
+                        </li>
+
+                        <li>
+                            <a href="tasks.html">Task Management</a>
+                        </li>
+
+                        <li>
+                            <a href="analytics.html">Analytics</a>
+                        </li>
+
+                        <li>
+                            <a href="about.html">About Company</a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+
+                <section
+                    class="footer-contact"
+                    aria-labelledby="footer-contact-title"
+                >
+
+                    <h2 id="footer-contact-title">
+                        Company Information
+                    </h2>
+
+                    <p>
+                        Visit the company's official website for
+                        company information and services.
+                    </p>
+
+                    <a
+                        href="https://bssoln.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        Visit BSSOLN &rarr;
+                    </a>
+
+                    <p class="contact-note">
+                        Official contact details will be added
+                        after verification.
+                    </p>
+
+                </section>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    &copy; <span id="copyright-year">2026</span>
+                    Feedback. All rights reserved.
+                </p>
+
+                <a href="#site-header">
+                    Back to Top &uarr;
+                </a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
